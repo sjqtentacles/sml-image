@@ -1,0 +1,16 @@
+(* Test executable basis: the library (with vendored deps) plus harness/runner. *)
+
+$(SML_LIB)/basis/basis.mlb
+
+../src/image.mlb
+
+harness.sml
+fixtures.sml
+support.sml
+test_ppm.sml
+test_bmp_tga.sml
+test_png.sml
+test_roundtrip.sml
+test_edge.sml
+entry.sml
+main.sml
