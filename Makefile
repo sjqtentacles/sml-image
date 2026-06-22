@@ -18,12 +18,21 @@ COLORDIR   := lib/github.com/sjqtentacles/sml-color
 TEST_MLB   := test/test.mlb
 SRCS       := $(wildcard $(INFLATEDIR)/* $(COLORDIR)/* src/* test/*.sml) $(TEST_MLB)
 
-.PHONY: all test poly test-poly all-tests fixtures clean
+.PHONY: all test poly test-poly all-tests example fixtures clean
 
 all: $(BIN)/test-mlton
 
 $(BIN)/test-mlton: $(SRCS) | $(BIN)
 	$(MLTON) -output $@ $(TEST_MLB)
+
+# Build + run the demo, rendering the deterministic assets/demo.png shown in the
+# README. Output is byte-identical across MLton and Poly/ML.
+example: $(BIN)/demo
+	mkdir -p assets
+	./$(BIN)/demo
+
+$(BIN)/demo: $(SRCS) examples/demo.sml examples/sources.mlb | $(BIN)
+	$(MLTON) -output $@ examples/sources.mlb
 
 test: $(BIN)/test-mlton
 	$(BIN)/test-mlton

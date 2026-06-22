@@ -1,5 +1,6 @@
 # MLton build artifacts
 /bin/test-mlton
+/bin/demo
 
 # editor/OS noise
 .DS_Store
